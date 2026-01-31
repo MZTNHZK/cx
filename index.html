@@ -1,116 +1,544 @@
 <!DOCTYPE html>
-<!-- saved from url=(0093)https://pub-98e77454d5fc46438fe6f46cf574e4e5.r2.dev/9d21de05-0919-4919-a157-74e241b86e98.html -->
-<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>奚仲中学科技创新社团</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background: linear-gradient(135deg, #1a237e, #311b92, #4a148c);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-            font-family: 'Microsoft YaHei', sans-serif;
-            overflow: hidden;
-        }
-        
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        
-        .glass-container {
-            position: relative;
-            width: 90%;
-            max-width: 800px;
-            padding: 3rem;
-            border-radius: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2),
-                        0 0 0 1px rgba(255, 255, 255, 0.1);
-            border-top: 1px solid rgba(255, 255, 255, 0.3);
-            border-left: 1px solid rgba(255, 255, 255, 0.2);
-            text-align: center;
-            overflow: hidden;
-            z-index: 10;
-        }
-        
-        /* 液态流动效果 */
-        .glass-container::before {
-            content: '';
-            position: absolute;
-            top: -70%;
-            left: -30%;
-            width: 200%;
-            height: 250%;
-            background: linear-gradient(
-                45deg,
-                rgba(255, 255, 255, 0.1) 0%,
-                rgba(255, 255, 255, 0.05) 25%,
-                transparent 50%,
-                rgba(255, 255, 255, 0.1) 75%,
-                rgba(255, 255, 255, 0.05) 100%
-            );
-            transform: rotate(30deg);
-            animation: liquidFlow 8s linear infinite;
-            z-index: -1;
-        }
-        
-        @keyframes liquidFlow {
-            0% { transform: rotate(30deg) translate(-5%, -5%); }
-            50% { transform: rotate(30deg) translate(5%, 5%); }
-            100% { transform: rotate(30deg) translate(-5%, -5%); }
-        }
-        
-        /* 气泡效果 */
-        .bubble {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            z-index: -1;
-            animation: float 15s infinite linear;
-        }
-        
-        @keyframes float {
-            to { transform: translateY(-100vh) rotate(360deg); }
-        }
-        
-        /* 文字样式 */
-        .main-title {
-            font-size: clamp(2.5rem, 6vw, 4rem);
-            font-weight: 700;
-            color: rgba(255, 255, 255, 0.95);
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-            margin-bottom: 1.5rem;
-            letter-spacing: 1px;
-        }
-        
-        .sub-title {
-            font-size: clamp(1.2rem, 3vw, 1.8rem);
-            font-weight: 300;
-            color: rgba(255, 255, 255, 0.8);
-            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
-            letter-spacing: 2px;
-            animation: pulse 2s infinite alternate;
-        }
-        
-        @keyframes pulse {
-            from { opacity: 0.7; transform: scale(0.98); }
-            to { opacity: 1; transform: scale(1.02); }
-        }
-    </style>
+<!-- saved from url=(0093)https://pub-98e77454d5fc46438fe6f46cf574e4e5.r2.dev/9a2f2bb5-6e75-4a52-a3ee-1e22e506538c.html -->
+<html lang="zh-CN" data-theme="light"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>奚仲中学科技创新社团 · 官方门户</title>
+
+  <style>
+    :root {
+      --bg: #ffffff;
+      --bg-alt: #f3f3f3;
+      --text: #111111;
+      --muted: #555555;
+      --accent: #0067b8;
+      --accent-soft: rgba(0,103,184,0.08);
+      --border: #e5e5e5;
+      --card-bg: #ffffff;
+      --shadow-soft: 0 8px 24px rgba(0,0,0,0.06);
+    }
+    [data-theme="dark"] {
+      --bg: #0b0f1a;
+      --bg-alt: #111827;
+      --text: #f9fafb;
+      --muted: #9ca3af;
+      --accent: #4f9dfc;
+      --accent-soft: rgba(79,157,252,0.12);
+      --border: #1f2933;
+      --card-bg: #111827;
+      --shadow-soft: 0 12px 30px rgba(0,0,0,0.6);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      transition: background 0.3s, color 0.3s;
+    }
+    a { color: var(--accent); text-decoration: none; }
+
+    /* 顶部导航 */
+    .top-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      transition: background 0.3s, border 0.3s, padding 0.2s;
+    }
+    .top-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      transition: padding 0.2s;
+    }
+    .top-bar.compact .top-inner {
+      padding: 6px 24px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+      font-size: 18px;
+    }
+    .logo-mark {
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+      background: linear-gradient(135deg,#0078d4,#00bcf2);
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 14px;
+    }
+    .nav-links a {
+      color: var(--muted);
+      padding: 4px 8px;
+      border-radius: 4px;
+      transition: 0.2s;
+    }
+    .nav-links a:hover {
+      background: var(--accent-soft);
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .search-box { position: relative; }
+    .search-box input {
+      padding: 6px 28px 6px 10px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--bg-alt);
+      color: var(--text);
+      font-size: 13px;
+      transition: 0.2s;
+    }
+    .search-box input:focus {
+      outline: none;
+      border-color: var(--accent);
+      background: var(--bg);
+    }
+    .search-box span {
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .theme-toggle {
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      padding: 6px 12px;
+      font-size: 12px;
+      background: var(--bg-alt);
+      cursor: pointer;
+      color: var(--muted);
+      transition: 0.2s;
+    }
+    .theme-toggle:hover {
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 32px 24px;
+    }
+    section { margin-bottom: 40px; }
+    section h2 {
+      font-size: 22px;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+    section p.section-sub {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    /* Hero */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
+      gap: 32px;
+      align-items: center;
+      padding: 48px 32px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--bg-alt), var(--card-bg));
+      box-shadow: var(--shadow-soft);
+      margin-bottom: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      background: radial-gradient(circle, rgba(0,120,212,0.25), transparent 70%);
+      top: -120px;
+      right: -120px;
+      filter: blur(40px);
+      opacity: 0.6;
+      animation: glowMove 16s ease-in-out infinite alternate;
+    }
+    @keyframes glowMove {
+      0% { transform: translate(0,0); opacity: 0.5; }
+      50% { transform: translate(-40px,20px); opacity: 0.7; }
+      100% { transform: translate(20px,-30px); opacity: 0.5; }
+    }
+    .hero-title {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      line-height: 1.25;
+    }
+    .hero-sub {
+      font-size: 15px;
+      color: var(--muted);
+      margin-bottom: 20px;
+      max-width: 480px;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      border-radius: 999px;
+      padding: 10px 22px;
+      font-size: 14px;
+      border: none;
+      cursor: pointer;
+      transition: 0.15s;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.18);
+    }
+    .btn-primary:hover {
+      background: #005a9e;
+      transform: translateY(-1px);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.22);
+    }
+    .btn-primary:active {
+      transform: translateY(0);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.18);
+    }
+    .btn-ghost {
+      background: transparent;
+      color: var(--accent);
+      border-radius: 999px;
+      padding: 10px 22px;
+      font-size: 14px;
+      border: 1px solid var(--accent-soft);
+      cursor: pointer;
+      transition: 0.15s;
+    }
+    .btn-ghost:hover {
+      background: var(--accent-soft);
+    }
+    .hero-visual {
+      position: relative;
+      height: 260px;
+      border-radius: 16px;
+      background: radial-gradient(circle at 0 0, rgba(0,120,212,0.25), transparent 55%),
+                  radial-gradient(circle at 100% 100%, rgba(0,188,242,0.25), transparent 55%),
+                  var(--bg-alt);
+      overflow: hidden;
+    }
+    .hero-orbit {
+      position: absolute;
+      inset: 18px;
+      border-radius: 999px;
+      border: 1px dashed rgba(255,255,255,0.2);
+      opacity: 0.6;
+    }
+    .hero-chip {
+      position: absolute;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.9);
+      color: #111;
+      font-size: 11px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+      animation: float 4s ease-in-out infinite;
+    }
+    .hero-chip:nth-child(2) { top: 30%; left: 18%; animation-delay: 0s; }
+    .hero-chip:nth-child(3) { top: 60%; left: 55%; animation-delay: 1s; }
+    .hero-chip:nth-child(4) { top: 20%; left: 65%; animation-delay: 2s; }
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+      100% { transform: translateY(0); }
+    }
+
+    /* 卡片体系 */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 16px;
+    }
+    .card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      padding: 16px;
+      box-shadow: var(--shadow-soft);
+      font-size: 14px;
+      transition: 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+    }
+    .card h3 {
+      font-size: 16px;
+      margin-bottom: 6px;
+    }
+    .card small {
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 11px;
+      margin-bottom: 6px;
+    }
+
+    /* 活动日历 */
+    .calendar-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 2.2fr) minmax(0, 2fr);
+      gap: 20px;
+    }
+    .calendar-box {
+      background: var(--card-bg);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      padding: 14px;
+      box-shadow: var(--shadow-soft);
+    }
+    .calendar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 4px;
+      font-size: 12px;
+    }
+    .calendar-dow {
+      text-align: center;
+      color: var(--muted);
+      padding: 4px 0;
+    }
+    .calendar-day {
+      text-align: center;
+      padding: 6px 0;
+      border-radius: 6px;
+      cursor: default;
+      transition: 0.15s;
+    }
+    .calendar-day.active {
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .calendar-day.today {
+      border: 1px solid var(--accent);
+    }
+    .next-event {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+    .event-list { font-size: 13px; }
+    .event-item {
+      padding: 6px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* 表单 */
+    form label {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+    form input, form select, form textarea {
+      width: 100%;
+      margin-top: 4px;
+      padding: 8px 10px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      font-size: 13px;
+      background: var(--bg-alt);
+      color: var(--text);
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 16px 24px 24px;
+      font-size: 12px;
+      color: var(--muted);
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* AI 助手按钮 */
+    .ai-toggle-btn {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 200;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 10px 16px;
+      font-size: 13px;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+      transition: 0.15s;
+    }
+    .ai-toggle-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.3);
+    }
+
+    /* AI 面板 */
+    .ai-panel {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 360px;
+      max-width: 100%;
+      height: 100%;
+      background: var(--card-bg);
+      border-left: 1px solid var(--border);
+      box-shadow: -8px 0 24px rgba(0,0,0,0.25);
+      display: flex;
+      flex-direction: column;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+      z-index: 300;
+    }
+    .ai-panel.open { transform: translateX(0); }
+
+    .ai-header {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .ai-header-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .ai-avatar {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: linear-gradient(135deg,#0078d4,#00bcf2);
+    }
+    .ai-title { font-size: 14px; font-weight: 600; }
+    .ai-sub { font-size: 11px; color: var(--muted); }
+    .ai-close {
+      border: none;
+      background: transparent;
+      font-size: 18px;
+      cursor: pointer;
+      color: var(--muted);
+    }
+
+    .ai-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .ai-messages {
+      flex: 1;
+      padding: 10px 12px;
+      overflow-y: auto;
+      font-size: 13px;
+    }
+    .ai-msg { margin-bottom: 8px; display: flex; }
+    .ai-msg.ai .bubble {
+      background: var(--bg-alt);
+      color: var(--text);
+      align-self: flex-start;
+    }
+    .ai-msg.user { justify-content: flex-end; }
+    .ai-msg.user .bubble {
+      background: var(--accent);
+      color: #fff;
+    }
+    .bubble {
+      padding: 6px 10px;
+      border-radius: 12px;
+      max-width: 80%;
+    }
+
+    .ai-quick {
+      padding: 6px 12px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .ai-quick button {
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--bg-alt);
+      font-size: 11px;
+      padding: 4px 8px;
+      cursor: pointer;
+      color: var(--muted);
+    }
+
+    .ai-input {
+      padding: 8px 10px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      gap: 6px;
+    }
+    .ai-input input {
+      flex: 1;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      padding: 6px 10px;
+      font-size: 13px;
+      background: var(--bg-alt);
+      color: var(--text);
+    }
+    .ai-input button {
+      border-radius: 999px;
+      border: none;
+      padding: 6px 12px;
+      font-size: 13px;
+      background: var(--accent);
+      color: #fff;
+      cursor: pointer;
+    }
+
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: minmax(0,1fr); }
+      .hero-visual { height: 200px; }
+      .calendar-layout { grid-template-columns: minmax(0,1fr); }
+      .card-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+    }
+    @media (max-width: 640px) {
+      .top-inner { flex-wrap: wrap; }
+      main { padding: 20px 16px; }
+      .card-grid { grid-template-columns: minmax(0,1fr); }
+      .ai-panel { width: 100%; }
+    }
+  </style>
 <style data-id="immersive-translate-input-injected-css">.immersive-translate-input {
   position: absolute;
   top: 0;
@@ -556,43 +984,591 @@
   cursor: pointer;
   justify-content: center;
 }
+
+  /* 基本 CSS ... */
+
+  /* ✅哈哈 在这里插入徽标样式 */
+  .logo-img {
+    height: 24px;
+    width: auto;
+    border-radius: 4px;
+  }
+
+  .ai-logo {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .ai-watermark {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 100px;
+    opacity: 0.06;
+    pointer-events: none;
+  }
 </style></head>
 <body>
-    <div class="glass-container">
-        <h1 class="main-title">奚仲中学科技创新社团官网，正在更新</h1>
-        <p class="sub-title">好东西要来了</p>
+  <!-- 顶部导航 -->
+  <div class="top-bar" id="topBar">
+    <div class="top-inner">
+      <div class="logo">
+        <img src="xzt.png" class="logo-img" alt="社团徽标">
+        <span>奚仲中学科创社团</span>
+      </div>
+      <nav class="nav-links">
+        <a href="https://pub-98e77454d5fc46438fe6f46cf574e4e5.r2.dev/9a2f2bb5-6e75-4a52-a3ee-1e22e506538c.html#home">首页</a>
+        <a href="https://pub-98e77454d5fc46438fe6f46cf574e4e5.r2.dev/9a2f2bb5-6e75-4a52-a3ee-1e22e506538c.html#directions">方向</a>
+        <a href="https://pub-98e77454d5fc46438fe6f46cf574e4e5.r2.dev/9a2f2bb5-6e75-4a52-a3ee-1e22e506538c.html#works">作品</a>
+        <a href="https://pub-98e77454d5fc46438fe6f46cf574e4e5.r2.dev/9a2f2bb5-6e75-4a52-a3ee-1e22e506538c.html#news">新闻</a>
+        <a href="https://pub-98e77454d5fc46438fe6f46cf574e4e5.r2.dev/9a2f2bb5-6e75-4a52-a3ee-1e22e506538c.html#calendar">日历</a>
+        <a href="https://pub-98e77454d5fc46438fe6f46cf574e4e5.r2.dev/9a2f2bb5-6e75-4a52-a3ee-1e22e506538c.html#team">人员</a>
+        <a href="https://pub-98e77454d5fc46438fe6f46cf574e4e5.r2.dev/9a2f2bb5-6e75-4a52-a3ee-1e22e506538c.html#join">加入</a>
+      </nav>
+      <div class="top-actions">
+        <div class="search-box">
+          <input id="siteSearch" type="text" placeholder="搜索暂不可用…">
+          <span>✓</span>
+        </div>
+        <button class="theme-toggle" id="themeToggle">亮 / 暗</button>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <!-- Hero -->
+    <section id="home">
+      <div class="hero">
+        <div>
+          <div class="hero-title">用代码与创意，重构校园科技想象。</div>
+          <div class="hero-sub">
+            奚仲中学科技创新社团，聚焦编程、无人机、摄影、AIGC、视频采编与科创实践，
+            这里是你走向未来数字世界的第一站。
+          </div>
+          <div class="hero-actions">
+            <button class="btn-primary" onclick="document.getElementById(&#39;join&#39;).scrollIntoView({behavior:&#39;smooth&#39;})">立即加入社团</button>
+            <button class="btn-ghost" onclick="document.getElementById(&#39;directions&#39;).scrollIntoView({behavior:&#39;smooth&#39;})">了解社团方向</button>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-orbit"></div>
+          <div class="hero-chip">编程 · Python / java / AI</div>
+          <div class="hero-chip">无人机 · 航拍 / 足球 / 编队</div>
+          <div class="hero-chip">AIGC · 图像 / 文本 / 视频</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 社团方向 -->
+    <section id="directions">
+      <h2>社团方向</h2>
+      <p class="section-sub">多元方向，协同成长，每个人都能找到适合自己的赛道。</p>
+      <div class="card-grid">
+        <div class="card">
+          <span class="badge">编程</span>
+          <h3>代码与算法</h3>
+          <p>从 Python 入门到前后端，再到简单算法与自动化脚本，打下扎实的计算思维基础。</p>
+        </div>
+        <div class="card">
+          <span class="badge">无人机</span>
+          <h3>飞行与控制</h3>
+          <p>无人机航拍、无人机足球、基础飞控与安全操作，体验“逐梦蓝天”的科创魅力。</p>
+        </div>
+        <div class="card">
+          <span class="badge">摄影</span>
+          <h3>影像与叙事</h3>
+          <p>构图、光线、色彩与故事，用镜头记录校园与城市，打造属于奚仲的视觉档案。</p>
+        </div>
+        <div class="card">
+          <span class="badge">AIGC</span>
+          <h3>生成式创作</h3>
+          <p>体验图像生成、文案生成与多模态创作，让 AI 成为你的创意搭档。</p>
+        </div>
+        <div class="card">
+          <span class="badge">视频采编</span>
+          <h3>剪辑与表达</h3>
+          <p>短视频策划、拍摄与剪辑，服务校园活动与社团宣传，打造高质量内容作品。</p>
+        </div>
+        <div class="card">
+          <span class="badge">科创实验室</span>
+          <h3>项目与竞赛</h3>
+          <p>面向各类信息学、创客与科技创新竞赛，组队打磨项目，冲击更高舞台。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 社团作品 -->
+    <section id="works">
+      <h2>社团作品</h2>
+      <p class="section-sub">作品是最好的名片，这里记录着每一次灵感落地的瞬间。</p>
+      <div class="card-grid">
+        <div class="card">
+          <span class="badge">编程 · Web</span>
+          <h3>校园活动报名系统</h3>
+          <p>基于 Web 的活动报名与统计平台，支持多社团协同使用。</p>
+          <small>作者：信息社团项目组</small>
+        </div>
+        <div class="card">
+          <span class="badge">无人机 · 航拍</span>
+          <h3>逐梦蓝天 · 校园航拍短片</h3>
+          <p>通过多机位航拍记录校园四季，展示奚仲中学的空间与节奏。</p>
+          <small>作者：无人机小组</small>
+        </div>
+        <div class="card">
+          <span class="badge">AIGC · 视觉</span>
+          <h3>未来校园概念海报</h3>
+          <p>使用 AIGC 工具生成未来校园场景，探索科技与教育的融合想象。</p>
+          <small>作者：AIGC 创意组</small>
+        </div>
+      </div>
+    </section>
+
+    <!-- 新闻中心 -->
+    <section id="news">
+      <h2>新闻中心</h2>
+      <p class="section-sub">记录每一次亮相与被看见的时刻。</p>
+      <div class="card-grid">
+        <div class="card">
+          <span class="badge">活动报道</span>
+          <h3>逐梦蓝天 · 无人机航拍活动</h3>
+          <p>奚仲中学科创社团开展无人机航拍实践，解锁科技新体验。</p>
+          <small>2025-10-24</small><br>
+          <a href="https://dzrb.dzng.com/general/0/NEWS2837190OBMCCHGAZWDUP" target="_blank">阅读详情</a>
+        </div>
+        <div class="card">
+          <span class="badge">校园文化</span>
+          <h3>科创竞技 逐梦蓝天</h3>
+          <p>山东省枣庄市薛城区奚仲中学：科创活动精彩纷呈，逐梦蓝天，展现校园创新精神。</p>
+          <small>2025-11-14</small><br>
+          <a href="https://article.xuexi.cn/articles/picture/index.html?art_id=16770594836426922012&item_id=16770594836426922012&cdn=https%3A%2F%2Fregion-shandong-resource&study_style_id=feeds_default&jump_model=dtxuexi%3A%2F%2Fappclient%2Fpage%2Fphoto_browser%3FitemId%3D16770594836426922012&source=share&share_to=wx_single" target="_blank">阅读详情</a>
+        </div>
+        <div class="card">
+          <span class="badge">科创实践</span>
+          <h3>无人机足球选拔 + AI 机器人搭建</h3>
+          <p>无人机足球与 AI 机器人搭建活动点燃了同学们的科创热情，展现青春与科技的融合。</p>
+          <small>2025-11-20</small><br>
+          <a href="https://www.jianpian.cn/a/1gvmdtif?sd=2&amp;a_uid=10675687&amp;s_uid=16311830" target="_blank">阅读详情</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 社团荣誉 -->
+    <section id="honors">
+      <h2>社团荣誉</h2>
+      <p class="section-sub">每一份荣誉背后，是一次次认真投入的日常。</p>
+      <div class="card-grid">
+        <div class="card">
+          <span class="badge">2022</span>
+          <h3>学校优秀社团</h3>
+          <p>Outstanding School Clubs</p>
+        </div>
+        <div class="card">
+          <span class="badge">2025</span>
+          <h3>校园创新大赛一等奖获奖单位</h3>
+          <p>First Prize Winner of the Campus Innovation Competition</p>
+        </div>
+        <div class="card">
+          <span class="badge">2025</span>
+          <h3>学校三佳社团</h3>
+          <p>Top Three School Clubs</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 社团人员 -->
+    <section id="team">
+      <h2>社团人员</h2>
+      <p class="section-sub">一群对科技与创作有真诚热爱的同学。</p>
+      <div class="card-grid">
+        <div class="card">
+          <span class="badge">社长与副社长</span>
+          <h3>吴涛，张辰与</h3>
+          <p>负责整体统筹与方向规划，擅长安卓，鸿蒙，iOS，Windows开发与产品设计。</p>
+        </div>
+        <div class="card">
+          <span class="badge">无人机队长（2人）</span>
+          <h3>陈文博与卜文杰</h3>
+          <p>负责无人机活动组织与对支持，擅长摄影与无人机。</p>
+        </div>
+        <div class="card">
+          <span class="badge">开源硬件总开发</span>
+          <h3>盛致远</h3>
+          <p>负责编程与开源硬件技术支持。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 社团活动室 -->
+    <section id="room">
+      <h2>社团活动室</h2>
+      <p class="section-sub">一个可以安心折腾、自由试错的空间。</p>
+      <div class="card-grid">
+        <div class="card">
+          <h3>活动室概况</h3>
+          <p>配备电脑、无人机、摄影设备与基础灯光设备，支持编程实践、航拍调试与内容创作。</p>
+          <p><small>开放时间：每周二 / 三 / 四 第 7-8 节课</small></p>
+        </div>
+        <div class="card">
+          <h3>设备清单</h3>
+          <ul style="font-size:13px; padding-left:18px;">
+            <li>台式电脑13台（支持编程与剪辑）</li>
+            <li>10台无人机（航拍 / 足球）</li>
+            <li>单反 / 微单相机与三脚架</li>
+            <li>基础补光灯与收音设备</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>使用规则</h3>
+          <ul style="font-size:13px; padding-left:18px;">
+            <li>活动时间内在指导老师或负责人在场时使用</li>
+            <li>设备借用需登记，归还需确认完好</li>
+            <li>保持环境整洁，爱护公共物品</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 社团公示面板 -->
+    <section id="board">
+      <h2>社团公示面板</h2>
+      <p class="section-sub">重要事项在此公示，确保信息透明与可追溯。</p>
+      <div class="card-grid">
+        <div class="card">
+          <span class="badge">进行中</span>
+          <h3>2026 年春季招新</h3>
+          <p>本次招新拟录取成员标准已张贴于活动室门口公示栏，公示期为 31 日。</p>
+          <small>公示时间：2025-01-10</small>
+        </div>
+        <div class="card">
+          <span class="badge">进行中</span>
+          <h3>社团寒假作业</h3>
+          <p>报名名单与选拔时间安排已确定，请相关同学关注活动室公告。</p>
+          <small>公示时间：2026-01-28</small>
+        </div>
+        <div class="card">
+          <span class="badge">已结束</span>
+          <h3>2025 年度优秀科创作品评选结果</h3>
+          <p>评选结果已归档，可在社团历史模块中查看。</p>
+          <small>公示时间：2025-01-16</small>
+        </div>
+      </div>
+    </section>
+
+    <!-- 社团历史 -->
+    <section id="history">
+      <h2>社团历史</h2>
+      <p class="section-sub">从最初的几个人，到如今的多方向协同，这是一个持续生长的故事。</p>
+      <div class="card-grid">
+        <div class="card">
+          <span class="badge">2022</span>
+          <h3>社团成立</h3>
+          <p>科创社团正式成立，以编程与基础信息技术兴趣小组为起点。</p>
+        </div>
+        <div class="card">
+          <span class="badge">2023</span>
+          <h3>方向扩展</h3>
+          <p>新增无人机、摄影与视频采编方向，开始参与校内大型活动支持。</p>
+        </div>
+        <div class="card">
+          <span class="badge">2024</span>
+          <h3>科创与 AIGC</h3>
+          <p>引入 AIGC 与科创项目，参与更多市级与省级科技创新活动。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 活动日历 -->
+    <section id="calendar">
+      <h2>活动日历</h2>
+      <p class="section-sub">固定活动时间：每周二、周三、周四的第 7-8 节课。</p>
+      <div class="calendar-layout">
+        <div class="calendar-box">
+          <div class="calendar-header">
+            <span id="monthTitle">2026 年 1 月</span>
+            <div>
+              <button class="btn-ghost" style="font-size:12px;padding:4px 8px;" id="prevBtn">上一月</button>
+              <button class="btn-ghost" style="font-size:12px;padding:4px 8px;" id="todayBtn">本月</button>
+              <button class="btn-ghost" style="font-size:12px;padding:4px 8px;" id="nextBtn">下一月</button>
+            </div>
+          </div>
+          <div class="calendar-grid">
+            <div class="calendar-dow">一</div>
+            <div class="calendar-dow">二</div>
+            <div class="calendar-dow">三</div>
+            <div class="calendar-dow">四</div>
+            <div class="calendar-dow">五</div>
+            <div class="calendar-dow">六</div>
+            <div class="calendar-dow">日</div>
+          </div>
+          <div class="calendar-grid" id="calendarGrid"><div class="calendar-day"></div><div class="calendar-day"></div><div class="calendar-day"></div><div class="calendar-day active">1</div><div class="calendar-day">2</div><div class="calendar-day">3</div><div class="calendar-day">4</div><div class="calendar-day">5</div><div class="calendar-day active">6</div><div class="calendar-day active">7</div><div class="calendar-day active">8</div><div class="calendar-day">9</div><div class="calendar-day">10</div><div class="calendar-day">11</div><div class="calendar-day">12</div><div class="calendar-day active">13</div><div class="calendar-day active">14</div><div class="calendar-day active">15</div><div class="calendar-day">16</div><div class="calendar-day">17</div><div class="calendar-day">18</div><div class="calendar-day">19</div><div class="calendar-day active">20</div><div class="calendar-day active">21</div><div class="calendar-day active">22</div><div class="calendar-day">23</div><div class="calendar-day">24</div><div class="calendar-day">25</div><div class="calendar-day">26</div><div class="calendar-day active">27</div><div class="calendar-day active">28</div><div class="calendar-day active">29</div><div class="calendar-day">30</div><div class="calendar-day today">31</div></div>
+          <div class="next-event" id="nextEvent">下一次活动：2026-02-03（周二），第 7-8 节课。</div>
+        </div>
+        <div class="calendar-box">
+          <h3 style="font-size:15px;margin-bottom:6px;">本周活动概览</h3>
+          <div class="event-list" id="weekEvents"><div class="event-item">2026-01-27（周二）· 第 7-8 节课 · 常规活动</div><div class="event-item">2026-01-28（周三）· 第 7-8 节课 · 常规活动</div><div class="event-item">2026-01-29（周四）· 第 7-8 节课 · 常规活动</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 加入我们 -->
+    <section id="join">
+      <h2>加入我们</h2>
+      <p class="section-sub">如果你对科技、创作或未来有一点点好奇，这里都欢迎你。</p>
+      <form onsubmit="event.preventDefault();alert(&#39;报名信息已提交。&#39;);">
+        <label>姓名
+          <input type="text" required="">
+        </label>
+        <label>年级
+          <input type="text" required="">
+        </label>
+        <label>方向意向
+          <select required="">
+            <option value="">请选择</option>
+            <option>编程</option>
+            <option>无人机</option>
+            <option>摄影</option>
+            <option>AIGC</option>
+            <option>视频采编</option>
+            <option>暂不确定，想多了解</option>
+          </select>
+        </label>
+        <label>自我介绍 / 想说的话
+          <textarea rows="4"></textarea>
+        </label>
+        <button class="btn-primary" type="submit">提交报名</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <div>© 奚仲中学科创社团 · 2025</div>
+    <div>联系邮箱：<a href="mailto:MZTNHZK@outlook.com">MZTNHZK@outlook.com</a> · <a href="mailto:MZTNHZK@icloud.com">MZTNHZK@icloud.com</a></div>
+  </footer>
+
+  <!-- AI 助手 -->
+  <button class="ai-toggle-btn" id="aiToggle">社团 AI 助手</button>
+
+  <div class="ai-panel" id="aiPanel">
+    <div class="ai-header">
+      <div class="ai-header-left">
+        <img src="xzt.png" class="ai-logo" alt="社团徽标">
+        <div>
+          <div class="ai-title">社团 AI 助手</div>
+          <div class="ai-sub">可以问我社团、方向、活动、历史…</div>
+        </div>
+      </div>
+      <button class="ai-close" id="aiClose">×</button>
     </div>
 
-    <script>
-        // 创建动态气泡
-        function createBubbles() {
-            const container = document.body;
-            const bubbleCount = 15;
-            
-            for (let i = 0; i < bubbleCount; i++) {
-                const bubble = document.createElement('div');
-                bubble.classList.add('bubble');
-                
-                // 随机尺寸和位置
-                const size = Math.random() * 60 + 20;
-                bubble.style.width = `${size}px`;
-                bubble.style.height = `${size}px`;
-                bubble.style.left = `${Math.random() * 100}vw`;
-                bubble.style.bottom = `-${size}px`;
-                
-                // 随机动画延迟和速度
-                bubble.style.animationDelay = `${Math.random() * 10}s`;
-                bubble.style.animationDuration = `${Math.random() * 20 + 10}s`;
-                
-                container.appendChild(bubble);
-            }
+    <div class="ai-body">
+      <div class="ai-messages" id="aiMessages">
+        <div class="ai-msg ai">
+          <div class="bubble">你好，我是社团的 AI 小助手，有什么想了解的可以直接问我。</div>
+        </div>
+      </div>
+
+      <div class="ai-quick">
+        <button data-q="如何加入社团？">如何加入社团？</button>
+        <button data-q="社团有哪些方向？">社团有哪些方向？</button>
+        <button data-q="活动时间是？">活动时间是？</button>
+        <button data-q="社团有什么荣誉？">社团有什么荣誉？</button>
+      </div>
+
+      <div class="ai-input">
+        <input id="aiInput" type="text" placeholder="输入你的问题…">
+        <button id="aiSend">发送</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 主题切换
+    const themeToggle = document.getElementById('themeToggle');
+    const htmlEl = document.documentElement;
+    themeToggle.addEventListener('click', () => {
+      const current = htmlEl.getAttribute('data-theme') || 'light';
+      const next = current === 'light' ? 'dark' : 'light';
+      htmlEl.setAttribute('data-theme', next);
+    });
+
+    // 导航栏滚动收缩
+    const topBar = document.getElementById('topBar');
+    let lastScroll = 0;
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY || window.pageYOffset;
+      if (y > 40 && y > lastScroll) {
+        topBar.classList.add('compact');
+      } else if (y < 40) {
+        topBar.classList.remove('compact');
+      }
+      lastScroll = y;
+    });
+
+    // 简易搜索提示
+    const searchInput = document.getElementById('siteSearch');
+    searchInput.addEventListener('keydown', e => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        alert("搜索功能当前为示例，后续可接入真实搜索逻辑。");
+      }
+    });
+
+    // 活动日历逻辑（周二/周三/周四）
+    function weekdayMonStart(d){const w=d.getDay();return w===0?7:w;}
+    const WEEK_ACTIVE=[2,3,4];
+    function nextActiveFrom(date){
+      let d=new Date(date);
+      for(let i=0;i<60;i++){
+        if(WEEK_ACTIVE.includes(weekdayMonStart(d))) return d;
+        d.setDate(d.getDate()+1);
+      }
+      return null;
+    }
+    function formatDate(d){
+      return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+    }
+    let viewDate=new Date();
+    function renderCalendar(vd){
+      const grid=document.getElementById("calendarGrid");
+      grid.innerHTML="";
+      const som=new Date(vd.getFullYear(),vd.getMonth(),1);
+      const eom=new Date(vd.getFullYear(),vd.getMonth()+1,0);
+      document.getElementById("monthTitle").textContent=`${som.getFullYear()} 年 ${som.getMonth()+1} 月`;
+      const lead=weekdayMonStart(som)-1;
+      for(let i=0;i<lead;i++){
+        const empty=document.createElement("div");
+        empty.className="calendar-day";
+        grid.appendChild(empty);
+      }
+      const today=new Date();
+      for(let day=1;day<=eom.getDate();day++){
+        const cellDate=new Date(som.getFullYear(),som.getMonth(),day);
+        const cell=document.createElement("div");
+        cell.className="calendar-day";
+        cell.textContent=day;
+        if(WEEK_ACTIVE.includes(weekdayMonStart(cellDate))){
+          cell.classList.add("active");
         }
-        
-        window.addEventListener('load', createBubbles);
-    </script>
+        if(cellDate.toDateString()===today.toDateString()){
+          cell.classList.add("today");
+        }
+        grid.appendChild(cell);
+      }
+      renderWeekEvents();
+    }
+    function renderWeekEvents(){
+      const container=document.getElementById("weekEvents");
+      container.innerHTML="";
+      const now=new Date();
+      const dayOfWeek=weekdayMonStart(now);
+      const monday=new Date(now);
+      monday.setDate(now.getDate()-(dayOfWeek-1));
+      for(let i=0;i<7;i++){
+        const d=new Date(monday);
+        d.setDate(monday.getDate()+i);
+        if(WEEK_ACTIVE.includes(weekdayMonStart(d))){
+          const item=document.createElement("div");
+          item.className="event-item";
+          const wdName=["周一","周二","周三","周四","周五","周六","周日"][weekdayMonStart(d)-1];
+          item.textContent=`${formatDate(d)}（${wdName}）· 第 7-8 节课 · 常规活动`;
+          container.appendChild(item);
+        }
+      }
+      if(!container.innerHTML){
+        container.textContent="本周暂无固定活动安排。";
+      }
+    }
+    function updateNextEvent(){
+      const next=nextActiveFrom(new Date());
+      const el=document.getElementById("nextEvent");
+      if(next){
+        const wdName=["周一","周二","周三","周四","周五","周六","周日"][weekdayMonStart(next)-1];
+        el.textContent=`下一次活动：${formatDate(next)}（${wdName}），第 7-8 节课。`;
+      }else{
+        el.textContent="近期无活动安排。";
+      }
+    }
+    document.getElementById("prevBtn").onclick=function(){viewDate=new Date(viewDate.getFullYear(),viewDate.getMonth()-1,1);renderCalendar(viewDate);};
+    document.getElementById("nextBtn").onclick=function(){viewDate=new Date(viewDate.getFullYear(),viewDate.getMonth()+1,1);renderCalendar(viewDate);};
+    document.getElementById("todayBtn").onclick=function(){viewDate=new Date();renderCalendar(viewDate);};
+    renderCalendar(viewDate);
+    updateNextEvent();
+
+    // AI 助手逻辑
+    const aiToggle=document.getElementById('aiToggle');
+    const aiPanel=document.getElementById('aiPanel');
+    const aiClose=document.getElementById('aiClose');
+    const aiMessages=document.getElementById('aiMessages');
+    const aiInput=document.getElementById('aiInput');
+    const aiSend=document.getElementById('aiSend');
+    const aiQuickBtns=document.querySelectorAll('.ai-quick button');
+
+    aiToggle.addEventListener('click',()=>{aiPanel.classList.add('open');aiInput.focus();});
+    aiClose.addEventListener('click',()=>{aiPanel.classList.remove('open');});
+    aiSend.addEventListener('click',sendAiMessage);
+    aiInput.addEventListener('keydown',e=>{if(e.key==="Enter"){e.preventDefault();sendAiMessage();}});
+    aiQuickBtns.forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        const q=btn.getAttribute('data-q');
+        appendMsg('user',q);
+        fakeAiReply(q);
+      });
+    });
+
+    function appendMsg(role,text){
+      const wrap=document.createElement('div');
+      wrap.className='ai-msg '+role;
+      const bubble=document.createElement('div');
+      bubble.className='bubble';
+      bubble.textContent=text;
+      wrap.appendChild(bubble);
+      aiMessages.appendChild(wrap);
+      aiMessages.scrollTop=aiMessages.scrollHeight;
+    }
+
+    function sendAiMessage(){
+      const text=aiInput.value.trim();
+      if(!text) return;
+      appendMsg('user',text);
+      aiInput.value='';
+      setTimeout(()=>fakeAiReply(text),300);
+    }
+
+    function fakeAiReply(t){
+      t=t.toLowerCase();
+
+      if(t.includes("加入")||t.includes("报名"))
+        return appendMsg("ai","加入社团非常简单，在“加入我们”板块填写报名表即可，我们会统一联系你。");
+
+      if(t.includes("方向")||t.includes("选")||t.includes("兴趣"))
+        return appendMsg("ai","目前有编程、无人机、摄影、AIGC、视频采编和科创实验室等方向，你可以根据兴趣选择，也可以先体验再决定。");
+
+      if(t.includes("活动")||t.includes("时间")||t.includes("星期"))
+        return appendMsg("ai","固定活动时间是每周二、周三、周四的第 7-8 节课，特殊活动会在公示面板与新闻中心发布。");
+
+      if(t.includes("荣誉")||t.includes("奖"))
+        return appendMsg("ai","你可以在“社团荣誉”模块看到近几年获得的主要奖项与荣誉。");
+
+      if(t.includes("作品")||t.includes("项目"))
+        return appendMsg("ai","在“社团作品”模块，我们会持续更新代表性项目与作品，欢迎你常来看看。");
+
+      if(t.includes("历史")||t.includes("发展"))
+        return appendMsg("ai","社团成立于 2025 年，之后逐步扩展方向并参与更多科创与媒体相关活动，你可以在“社团历史”模块看到时间轴。");
+
+      if(t.includes("活动室")||t.includes("设备"))
+        return appendMsg("ai","社团活动室配备电脑、无人机、摄影与灯光设备，开放时间与使用规则在“社团活动室”模块有详细说明。");
+
+      if(t.includes("公示")||t.includes("公告"))
+        return appendMsg("ai","重要事项会在“社团公示面板”中发布，包括招新结果、选拔安排等。");
+
+      appendMsg("ai","这个问题很有意思，我会继续学习。如果你愿意，也可以告诉我你希望我多懂一些什么。");
+    }
+  </script>
 
 
-<div id="thunderbit-crx-side-bar" style="display:block;opacity:1;pointer-events:all;top:0;right:0;z-index:9007199254740991;position:fixed;pointer-events:none;user-select:none;"><template shadowrootmode="open"><div id="#react-app-root"><div id="#react-app-slot" style="display:flex"></div></div></template></div><button id="open-side-panel" style="width:0;height:0;opacity:0;user-select:none;pointer-events:all;position:absolute;bottom:0;right:0;padding:0;border:0;outline:none;"></button><div class="bubble" style="width: 48.4432px; height: 48.4432px; left: 14.5546vw; bottom: -48.4432px; animation-delay: 3.539s; animation-duration: 10.683s;"></div><div class="bubble" style="width: 37.2865px; height: 37.2865px; left: 85.4049vw; bottom: -37.2865px; animation-delay: 7.67596s; animation-duration: 14.1826s;"></div><div class="bubble" style="width: 77.2646px; height: 77.2646px; left: 24.5664vw; bottom: -77.2646px; animation-delay: 8.99288s; animation-duration: 16.4769s;"></div><div class="bubble" style="width: 27.5558px; height: 27.5558px; left: 50.5333vw; bottom: -27.5558px; animation-delay: 5.04561s; animation-duration: 25.3492s;"></div><div class="bubble" style="width: 36.689px; height: 36.689px; left: 62.9767vw; bottom: -36.689px; animation-delay: 7.4354s; animation-duration: 27.4819s;"></div><div class="bubble" style="width: 27.7444px; height: 27.7444px; left: 87.6566vw; bottom: -27.7444px; animation-delay: 8.52066s; animation-duration: 10.5952s;"></div><div class="bubble" style="width: 46.2019px; height: 46.2019px; left: 40.8655vw; bottom: -46.2019px; animation-delay: 1.88613s; animation-duration: 20.8724s;"></div><div class="bubble" style="width: 23.347px; height: 23.347px; left: 97.2904vw; bottom: -23.347px; animation-delay: 7.79034s; animation-duration: 27.4854s;"></div><div class="bubble" style="width: 44.5717px; height: 44.5717px; left: 25.9158vw; bottom: -44.5717px; animation-delay: 4.82497s; animation-duration: 12.6127s;"></div><div class="bubble" style="width: 26.9892px; height: 26.9892px; left: 46.1113vw; bottom: -26.9892px; animation-delay: 2.80779s; animation-duration: 28.7013s;"></div><div class="bubble" style="width: 24.2235px; height: 24.2235px; left: 6.356vw; bottom: -24.2235px; animation-delay: 2.89391s; animation-duration: 26.8959s;"></div><div class="bubble" style="width: 78.2967px; height: 78.2967px; left: 38.5014vw; bottom: -78.2967px; animation-delay: 3.70025s; animation-duration: 28.4618s;"></div><div class="bubble" style="width: 21.5346px; height: 21.5346px; left: 33.6858vw; bottom: -21.5346px; animation-delay: 9.55637s; animation-duration: 16.7252s;"></div><div class="bubble" style="width: 78.3528px; height: 78.3528px; left: 5.96782vw; bottom: -78.3528px; animation-delay: 3.31888s; animation-duration: 18.999s;"></div><div class="bubble" style="width: 38.5946px; height: 38.5946px; left: 68.807vw; bottom: -38.5946px; animation-delay: 7.76326s; animation-duration: 14.7776s;"></div></body><div id="immersive-translate-browser-popup" style="all: initial"><template shadowrootmode="open"><style>/** 基础色阶定义 **/
+<div id="thunderbit-crx-side-bar" style="display:block;opacity:1;pointer-events:all;top:0;right:0;z-index:9007199254740991;position:fixed;pointer-events:none;user-select:none;"><template shadowrootmode="open"><div id="#react-app-root"><div id="#react-app-slot" style="display:flex"></div></div></template></div><button id="open-side-panel" style="width:0;height:0;opacity:0;user-select:none;pointer-events:all;position:absolute;bottom:0;right:0;padding:0;border:0;outline:none;"></button></body><div id="immersive-translate-browser-popup" style="all: initial"><template shadowrootmode="open"><style>/** 基础色阶定义 **/
 :root,
 #mount[data-theme="light"],
 #mount:not([data-theme="dark"]) {
